@@ -1,0 +1,15 @@
+{
+  "name": "@snug/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.scss",
+  "scripts": {
+    "watch": "npx sass test/app.scss test/app.css --update --watch",
+    "build": "npx sass test/app.scss test/app.css"
+  },
+  "author": "Lukas Kleinschmidt <kleinschmidt@eatersvz.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.32.5"
+  }
+}

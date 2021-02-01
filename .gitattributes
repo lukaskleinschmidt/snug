@@ -1,0 +1,4 @@
+* text=auto
+*.scss linguist-language=SCSS
+*.scss linguist-detectable=true
+CHANGELOG.md export-ignore

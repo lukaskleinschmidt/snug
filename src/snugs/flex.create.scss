@@ -1,0 +1,118 @@
+@use '../snug' as *;
+@use 'sass:list';
+@use 'sass:map';
+
+$default-variants: () !default;
+$default-direction: () !default;
+$default-wrap: () !default;
+$default-flex: () !default;
+$default-grow: () !default;
+$default-shrink: () !default;
+$default-items: () !default;
+$default-content: () !default;
+$default-self: () !default;
+$default-justify: () !default;
+$default-order: () !default;
+
+@mixin create(
+  $variants: (),
+  $direction: (),
+  $wrap: (),
+  $flex: (),
+  $grow: (),
+  $shrink: (),
+  $items: (),
+  $content: (),
+  $self: (),
+  $justify: (),
+  $order: ()
+) {
+  $variants: list.join($default-variants, $variants, space);
+  $direction: map.merge($default-direction, $direction);
+  $wrap: map.merge($default-wrap, $wrap);
+  $flex: map.merge($default-flex, $flex);
+  $grow: map.merge($default-grow, $grow);
+  $shrink: map.merge($default-shrink, $shrink);
+  $items: map.merge($default-items, $items);
+  $content: map.merge($default-content, $content);
+  $self: map.merge($default-self, $self);
+  $justify: map.merge($default-justify, $justify);
+  $order: map.merge($default-order, $order);
+
+  @include variants($variants) using ($props...) {
+
+    // ███████╗██╗     ███████╗██╗  ██╗      ██╗ ██╗
+    // ██╔════╝██║     ██╔════╝╚██╗██╔╝     ████████╗
+    // █████╗  ██║     █████╗   ╚███╔╝█████╗╚██╔═██╔╝
+    // ██╔══╝  ██║     ██╔══╝   ██╔██╗╚════╝████████╗
+    // ██║     ███████╗███████╗██╔╝ ██╗     ╚██╔═██╔╝
+    // ╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝      ╚═╝ ╚═╝
+
+    .flex {
+      @include options($direction, $props...) using ($value) {
+        flex-direction: $value;
+      }
+
+      @include options($wrap, $props...) using ($value) {
+        flex-wrap: $value;
+      }
+
+      @include options($flex, $props...) using ($value) {
+        flex: $value;
+      }
+
+      @include options($grow, $props...) using ($value) {
+        flex-grow: $value
+      }
+
+      @include options($shrink, $props...) using ($value) {
+        flex-shrink: $value
+      }
+    }
+
+    //  █████╗ ██╗     ██╗ ██████╗ ███╗   ██╗
+    // ██╔══██╗██║     ██║██╔════╝ ████╗  ██║
+    // ███████║██║     ██║██║  ███╗██╔██╗ ██║
+    // ██╔══██║██║     ██║██║   ██║██║╚██╗██║
+    // ██║  ██║███████╗██║╚██████╔╝██║ ╚████║
+    // ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝
+
+    .items {
+      @include options($items, $props...) using ($value) {
+        align-items: $value
+      }
+    }
+
+    .content {
+      @include options($content, $props...) using ($value) {
+        align-content: $value
+      }
+    }
+
+    .self {
+      @include options($self, $props...) using ($value) {
+        align-self: $value
+      }
+    }
+
+    .justify {
+      @include options($justify, $props...) using ($value) {
+        justify-content: $value
+      }
+    }
+
+
+    //  ██████╗ ██████╗ ██████╗ ███████╗██████╗
+    // ██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
+    // ██║   ██║██████╔╝██║  ██║█████╗  ██████╔╝
+    // ██║   ██║██╔══██╗██║  ██║██╔══╝  ██╔══██╗
+    // ╚██████╔╝██║  ██║██████╔╝███████╗██║  ██║
+    //  ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝
+
+    .order {
+      @include options($order, $props...) using ($value) {
+        order: $value
+      }
+    }
+  }
+}

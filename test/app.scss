@@ -1,0 +1,26 @@
+@use '../src/snug' as * with (
+  $breakpoints: (
+    's': 640px,
+    'm': 768px,
+    'l': 1024px,
+  ),
+);
+
+// Overwriting defaults
+@use '../src/snugs/display' with (
+  $options: (
+    'block': block,
+    'flex': flex,
+  )
+);
+
+// Extending defaults
+@include display.create($options: (
+  'table': table,
+));
+
+.banana {
+  @include variants('responsive' 'dark' 'hover' 'group-hover') {
+    color: gold;
+  }
+}

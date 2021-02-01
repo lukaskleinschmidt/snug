@@ -1,0 +1,15 @@
+@use '../snug' as *;
+@use 'sass:list';
+@use 'sass:map';
+
+$default-variants: () !default;
+$default-options: () !default;
+
+@mixin create($variants: (), $options: ()) {
+  $variants: list.join($default-variants, $variants, list.separator($variants));
+  $options: map.merge($default-options, $options);
+
+  @include options($options, $variants) using ($value) {
+    display: $value;
+  }
+}
