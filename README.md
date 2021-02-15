@@ -21,7 +21,7 @@ group-`pseudo-class` | [`pseudo-class`](https://developer.mozilla.org/en-US/docs
 
 ## Basic Usage
 ```scss
-@use 'snug' as * with (
+@use '@snug/core' as * with (
   $breakpoints: (
     's': 640px,
     'm': 768px,
@@ -42,6 +42,7 @@ group-`pseudo-class` | [`pseudo-class`](https://developer.mozilla.org/en-US/docs
     color: gold;
   }
 }
+
 ```
 
 
@@ -64,4 +65,8 @@ A more specific property would be something like `padding-top` to `padding`.
     }
   }
 }
+
 ```
+
+
+## Performance
