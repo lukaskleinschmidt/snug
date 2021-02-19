@@ -255,23 +255,43 @@ $breakpoints: () !default;
   @if & {
     @each $key, $value in $options {
       &-#{$key} {
-        @include variants($variants, $context) {
-          @content($value);
+        @include walk($value, $variants, $context) using ($props...) {
+          @content($props...);
         }
       }
     }
   }
 
-  // Render options as separate classes
+  // Render options as root classes
   @else {
     @include variants($variants, $context) using ($props...) {
       @each $key, $value in $options {
         .#{$key} {
-          @include variants($props...) {
-            @content($value);
+          @include walk($value, $props...) using ($props...) {
+            @content($props...);
           }
         }
       }
+    }
+  }
+}
+
+
+/// Render value recursively if necessary.
+///
+/// @param {Mixed} $value
+/// @param {List}  $variants [()]
+/// @param {List}  $breakpoint [null]
+@mixin walk($value, $variants: (), $context: ()) {
+  @if meta.type-of($value) == 'map' {
+    @include options($value, $variants, $context) using ($props...) {
+      @content($props...);
+    }
+  }
+
+  @else {
+    @include variants($variants, $context) {
+      @content($value);
     }
   }
 }

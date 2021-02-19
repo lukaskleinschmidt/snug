@@ -46,7 +46,7 @@ group-`pseudo-class` | [`pseudo-class`](https://developer.mozilla.org/en-US/docs
 ```
 
 
-## Advanced Usage
+## Responsive Variants
 When using modifiers that change the same or a more specific css property these must be grouped by breakpoint.
 A more specific property would be something like `padding-top` to `padding`.
 
@@ -69,4 +69,26 @@ A more specific property would be something like `padding-top` to `padding`.
 ```
 
 
-## Performance
+## Using Options
+```scss
+$colors: (
+  'blue': (
+    100: #e5f1fd,
+    200: #b0d6f9,
+    300: #7bbaf6,
+    400: #469ff2,
+    500: #1183ee,
+    600: #0d66b9,
+    700: #094984,
+    800: #062c4f,
+    900: #020f1a,
+  )
+);
+
+.text {
+  @include options($colors, 'hover' 'group-hover') using ($value) {
+    color: $value;
+  }
+}
+
+```

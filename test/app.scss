@@ -1,13 +1,71 @@
+@use 'sass:meta';
+
 @use '../index' as * with (
   $breakpoints: (
     's': 640px,
     'm': 768px,
-    'l': 1024px,
+    // 'l': 1024px,
   ),
 );
 
-.banana {
-  @include variants('responsive' 'dark' 'hover' 'group-hover') {
-    color: gold;
-  }
+// .banana {
+//   @include variants('responsive' 'dark' 'hover' 'group-hover') {
+//     color: gold;
+//   }
+// }
+
+$colors: (
+  'blue': (
+    100: #e5f1fd,
+    200: #b0d6f9,
+    // 300: #7bbaf6,
+    // 400: #469ff2,
+    // 500: #1183ee,
+    // 600: #0d66b9,
+    // 700: #094984,
+    // 800: #062c4f,
+    // 900: #020f1a,
+  )
+);
+
+// @mixin colors($variants: (), $context: ()) {
+//   @include options($colors) using ($shades) {
+//     @include options($shades, $variants, $context) using ($value) {
+//       @content($value);
+//     }
+//   }
+// }
+
+// @include variants('responsive' 'hover') using ($props...) {
+//   .text {
+//     @include colors($props...) using ($value) {
+//       color: $value;
+//     }
+//   }
+// }
+
+$config: (
+  'text': (
+    'blue': (
+      100: #e5f1fd,
+      200: #b0d6f9,
+      // 300: #7bbaf6,
+      // 400: #469ff2,
+      // 500: #1183ee,
+      // 600: #0d66b9,
+      // 700: #094984,
+      // 800: #062c4f,
+      // 900: #020f1a,
+    )
+  )
+);
+
+// .text {
+//   @include options($colors, 'hover') using ($value) {
+//     color: $value;
+//   }
+// }
+
+@include options($config, 'responsive' 'hover') using ($value) {
+  color: $value;
 }
