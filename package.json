@@ -1,6 +1,6 @@
 {
   "name": "@snug/core",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "",
   "main": "index.scss",
   "scripts": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lukaskleinschmidt/snug-core.git"
+    "url": "git+https://github.com/lukaskleinschmidt/snug.git"
   },
   "author": "Lukas Kleinschmidt <kleinschmidt@eatersvz.de>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lukaskleinschmidt/snug-core/issues"
+    "url": "https://github.com/lukaskleinschmidt/snug/issues"
   },
-  "homepage": "https://github.com/lukaskleinschmidt/snug-core#readme",
+  "homepage": "https://github.com/lukaskleinschmidt/snug#readme",
   "devDependencies": {
     "sass": "^1.32.7"
   }
