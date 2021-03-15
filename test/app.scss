@@ -28,19 +28,17 @@ $colors: (
   )
 );
 
-// @mixin colors($variants: (), $context: ()) {
-//   @include options($colors) using ($shades) {
-//     @include options($shades, $variants, $context) using ($value) {
-//       @content($value);
-//     }
-//   }
-// }
+@include variants('responsive' 'hover') using ($p...) {
+  .text {
+    @include options($colors, $p...) using ($value) {
+      color: $value;
+    }
+  }
+}
 
-// @include variants('responsive' 'hover') using ($props...) {
-//   .text {
-//     @include colors($props...) using ($value) {
-//       color: $value;
-//     }
+// .text {
+//   @include options($colors, 'hover') using ($value) {
+//     color: $value;
 //   }
 // }
 
@@ -59,12 +57,6 @@ $config: (
     )
   )
 );
-
-// .text {
-//   @include options($colors, 'hover') using ($value) {
-//     color: $value;
-//   }
-// }
 
 @include options($config, 'responsive' 'hover') using ($value) {
   color: $value;
