@@ -1,6 +1,6 @@
 {
   "name": "@snug/core",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "description": "",
   "main": "index.scss",
   "scripts": {
@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/lukaskleinschmidt/snug#readme",
   "devDependencies": {
-    "sass": "^1.32.7"
+    "sass": "^1.35.1"
   }
 }
