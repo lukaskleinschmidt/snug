@@ -33,6 +33,15 @@
 //   color: brown;
 // }
 
+// .parent-one,
+// .parent-two {
+//   .banana,
+//   .gold {
+//     @include variants('responsive' 'hover') {
+//       color: gold;
+//     }
+//   }
+// }
 
 $colors: (
   'blue': (

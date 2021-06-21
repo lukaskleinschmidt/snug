@@ -95,7 +95,6 @@ $breakpoints: () !default;
   // Append rule
   @if $rule {
     $base: selector.append('#{$rule}\\:', $base);
-    // $base: '#{$rule}\\:#{$base}';
   }
 
   // Append pseudo-class
@@ -128,22 +127,28 @@ $breakpoints: () !default;
 
 /// Render variant inline.
 ///
-/// @param {String} $base    [null]
+/// @param {String} $base    [()]
 /// @param {String} $parent  [()]
 /// @param {String} $rule    [null]
 /// @param {String} $variant [null]
 /// @param {String} $pseudo  [null]
 /// @param {String} $scope   [null]
-@mixin render-inline($base: null, $parent: (), $context...) {
+@mixin render-inline($base: (), $parent: (), $context...) {
 
   @each $selector in & {
     @if list.length($selector) > 1 {
-      $parent: list.append($parent, pop($selector), comma);
+      $value: pop($selector);
+
+      @if not list.index($parent, $value) {
+        $parent: list.append($parent, $value, comma);
+      }
     }
 
-    @if not $base {
-      $base: list.nth($selector, -1);
-      $base: string.slice($base, 2);
+    $value: list.nth($selector, -1);
+    $value: string.slice($value, 2);
+
+    @if not list.index($base, $value) {
+      $base: list.append($base, $value, comma);
     }
   }
 
