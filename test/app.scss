@@ -14,31 +14,51 @@
 //   }
 // }
 
+// body[season=spring],
+// body[season=summer] {
+//   .banana {
+//     @include variants('responsive' 'hover' 'group-hover') {
+//       color: gold;
+//     }
+//   }
+// }
+
+// .banana {
+//   @include variants('responsive' 'hover' 'group-hover') {
+//     color: gold;
+//   }
+// }
+
+// @include variants('responsive' 'hover' 'group-hover', (base: 'banana', parent: 'body[season=winter]')) {
+//   color: brown;
+// }
+
+
 $colors: (
   'blue': (
     100: #e5f1fd,
     200: #b0d6f9,
-    // 300: #7bbaf6,
-    // 400: #469ff2,
-    // 500: #1183ee,
-    // 600: #0d66b9,
-    // 700: #094984,
-    // 800: #062c4f,
-    // 900: #020f1a,
+    300: #7bbaf6,
+    400: #469ff2,
+    500: #1183ee,
+    600: #0d66b9,
+    700: #094984,
+    800: #062c4f,
+    900: #020f1a,
   )
 );
-
-@include variants('responsive' 'hover') using ($p...) {
-  .text {
-    @include options($colors, $p...) using ($value) {
-      color: $value;
-    }
-  }
-}
 
 // .text {
 //   @include options($colors, 'hover') using ($value) {
 //     color: $value;
+//   }
+// }
+
+// body[theme=default] {
+//   .text {
+//     @include options($colors, 'hover') using ($value) {
+//       color: $value;
+//     }
 //   }
 // }
 
@@ -47,17 +67,21 @@ $config: (
     'blue': (
       100: #e5f1fd,
       200: #b0d6f9,
-      // 300: #7bbaf6,
-      // 400: #469ff2,
-      // 500: #1183ee,
-      // 600: #0d66b9,
-      // 700: #094984,
-      // 800: #062c4f,
-      // 900: #020f1a,
+      300: #7bbaf6,
+      400: #469ff2,
+      500: #1183ee,
+      600: #0d66b9,
+      700: #094984,
+      800: #062c4f,
+      900: #020f1a,
     )
   )
 );
 
-@include options($config, 'responsive' 'hover') using ($value) {
-  color: $value;
-}
+// @include options($config, 'hover') using ($value) {
+//   color: $value;
+// }
+
+// @include options($config, 'hover', (parent: 'body[theme=default]')) using ($value) {
+//   color: $value;
+// }

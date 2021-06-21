@@ -61,14 +61,31 @@ $breakpoints: () !default;
 }
 
 
+/// Pop the element off the end of array.
+///
+/// @param  {List} $items
+/// @return {List} Returns the shortened list.
+@function pop($items) {
+  $separator: list.separator($items);
+  $result: ();
+
+  @for $index from 1 through list.length($items) - 1 {
+    $result: list.append($result, list.nth($items, $index), $separator);
+  }
+
+  @return $result;
+}
+
+
 /// Render variant.
 ///
 /// @param {String} $base
+/// @param {String} $parent  [()]
 /// @param {String} $rule    [null]
 /// @param {String} $variant [null]
 /// @param {String} $pseudo  [null]
 /// @param {String} $scope   [null]
-@mixin render($base, $rule: null, $variant: null, $pseudo: null, $scope: null) {
+@mixin render($base, $parent: (), $rule: null, $variant: null, $pseudo: null, $scope: null) {
 
   // Append variant
   @if $variant {
@@ -99,6 +116,10 @@ $breakpoints: () !default;
     $base: to-class($base);
   }
 
+  @if list.length($parent) >= 1 {
+    $base: selector.nest($parent, $base);
+  }
+
   #{$base} {
     @content;
   }
@@ -107,27 +128,27 @@ $breakpoints: () !default;
 
 /// Render variant inline.
 ///
+/// @param {String} $base    [null]
+/// @param {String} $parent  [()]
 /// @param {String} $rule    [null]
 /// @param {String} $variant [null]
 /// @param {String} $pseudo  [null]
 /// @param {String} $scope   [null]
-@mixin render-inline($context...) {
-  $base: ();
+@mixin render-inline($base: null, $parent: (), $context...) {
 
   @each $selector in & {
-    $selector: list.nth($selector, 1);
-
-    @if meta.type-of($selector) == 'string' {
-      $selector: string.slice($selector, 2);
+    @if list.length($selector) > 1 {
+      $parent: list.append($parent, pop($selector), comma);
     }
 
-    @if $selector {
-      $base: list.append($base, $selector, comma);
+    @if not $base {
+      $base: list.nth($selector, -1);
+      $base: string.slice($base, 2);
     }
   }
 
   @at-root {
-    @include render($base, $context...) {
+    @include render($base, $parent, $context...) {
       @content;
     }
   }
@@ -140,7 +161,7 @@ $breakpoints: () !default;
 /// @param {Map}  $context [()]
 @mixin render-variants($variants: (), $context: ()) {
 
-  @if & {
+  @if & or map.has-key($context, 'base') {
     @include render-inline($context...) {
       @content;
     }
